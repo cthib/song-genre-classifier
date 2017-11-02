@@ -1,0 +1,17 @@
+audioread==2.1.5
+decorator==4.1.2
+enum34==1.1.6
+joblib==0.11
+librosa==0.5.1
+llvmlite==0.20.0
+numba==0.35.0
+numpy==1.13.3
+pandas==0.21.0
+protobuf==3.4.0
+python-dateutil==2.6.1
+pytz==2017.3
+resampy==0.2.0
+scikit-learn==0.19.1
+scipy==1.0.0
+six==1.11.0
+tf-nightly==1.5.0.dev20171102
