@@ -16,7 +16,7 @@ To help with conflicts in project dependencies we'll create a virtualenv for the
 
 ## Dependent Resources
 
-### Tensorflow (https://www.tensorflow.org/)
+### TensorFlow (https://www.tensorflow.org/)
 pass
 
 ### FMA: A Dataset For Music Analysis (https://github.com/mdeff/fma)
