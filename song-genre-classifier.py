@@ -6,6 +6,7 @@ import os
 import sys
 import urllib
 
+from genre_classification import train_base
 from soundcloud_extraction import process_soundcloud
 
 
@@ -36,8 +37,8 @@ def main():
     vargs = vars(args)
 
     if vargs['train']: 
-        # TODO: Set this up to train the TF Classifier
-        pass
+        train_base()
+        return
 
     if vargs['album']:
         # TODO: Classify a whole album, we dont really need to do this... but if you're bored
