@@ -1,5 +1,7 @@
 import pandas as pd
 
+from sklearn.model_selection import train_test_split
+
 features_path = 'dataset/fma/features.csv'
 tracks_path = 'dataset/fma/tracks.csv'
 
@@ -20,9 +22,16 @@ genre_list.columns = ['genre_top']
 # The audio features we are interested in, joining with genre subset
 print('- Feature subset')
 feature_list = features[['spectral_bandwidth', 'spectral_centroid', 'spectral_rolloff', 'zcr', 'rmse']]
-joined_features = pd.concat([genre_list, feature_list], axis=1, join='inner').drop('genre_top', 1)
+joined_features = pd.concat([feature_list, genre_list], axis=1, join='inner')
+
+# Randomizing and splitting data
+print('- Randomize split')
+mixed_features = joined_features.sample(frac=1).reset_index(drop=True)
+train = mixed_features.sample(frac=0.8, random_state=200)
+test = mixed_features.drop(train.index)
 
 print('Creating csv files...')
 joined_features.to_csv('dataset/feature_subset.csv')
-genre_list.to_csv('dataset/genre_subset.csv')
+train.to_csv('dataset/unbalanced_train_set.csv')
+test.to_csv('dataset/unbalanced_test_set.csv')
 print('Done.')

@@ -27,8 +27,7 @@ def train_base():
 
     #convert to strings
     data = np.float32(d)
-    labels = np.array(l,'str')
-
+    labels = np.array(l, 'str')
 
     print(data)
     print(labels)
