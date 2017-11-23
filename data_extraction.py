@@ -117,19 +117,19 @@ print('- Base feature subset')
 joined13_features.to_csv('dataset/feature_subset.csv')
 
 print('- Unbalanced 13 top level genres')
-unbal13_train.to_csv('dataset/unbalanced13/train_set.csv', header=False, index=False)
-unbal13_test.to_csv('dataset/unbalanced13/test_set.csv', header=False, index=False)
+unbal13_train.to_csv('dataset/unbalanced13/train_set.csv', index=False)
+unbal13_test.to_csv('dataset/unbalanced13/test_set.csv', index=False)
 
 print('- Balanced 13 top level genres')
-bal13_train.to_csv('dataset/balanced13/train_set.csv', header=False, index=False)
-bal13_test.to_csv('dataset/balanced13/test_set.csv', header=False, index=False)
+bal13_train.to_csv('dataset/balanced13/train_set.csv', index=False)
+bal13_test.to_csv('dataset/balanced13/test_set.csv', index=False)
 
 print('- Balanced 10 top level genres')
-bal10_train.to_csv('dataset/balanced10/train_set.csv', header=False, index=False)
-bal10_test.to_csv('dataset/balanced10/test_set.csv', header=False, index=False)
+bal10_train.to_csv('dataset/balanced10/train_set.csv', index=False)
+bal10_test.to_csv('dataset/balanced10/test_set.csv', index=False)
 
 print('- Balanced 8 top level genres')
-bal8_train.to_csv('dataset/balanced8/train_set.csv', header=False, index=False)
-bal8_test.to_csv('dataset/balanced8/test_set.csv', header=False, index=False)
+bal8_train.to_csv('dataset/balanced8/train_set.csv', index=False)
+bal8_test.to_csv('dataset/balanced8/test_set.csv', index=False)
 
 print('Done.')
