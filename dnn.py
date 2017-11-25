@@ -68,8 +68,16 @@ load_datasets()
 TRAIN_SET = "dataset/train_set10.csv"
 TEST_SET = "dataset/test_set10.csv"
 
+train_df = pd.read_csv('dataset/test_set10.csv')
 
-test_df = pd.read_csv('dataset/test_set.csv')
+test_df = pd.read_csv('dataset/test_set10.csv')
+
+
+print('Training set', train_df.shape)
+print('Testing set', test_df.shape)
+
+
+
 print(len(test_df.columns))
 print(test_df.iloc[:,-1].unique())
 
@@ -108,7 +116,7 @@ def get_test_inputs():
     return x, y
 
   # Evaluate accuracy.
-accuracy_score = classifier.evaluate(input_fn=get_test_inputs,
+accuracy_score = classifier.evaluate(input_fn=get_train_inputs,
                                        steps=1)["accuracy"]
 print("\nTest Accuracy: {0:f}\n".format(accuracy_score))
 
