@@ -49,12 +49,12 @@ def load_datasets():
     "International": 7
 })
 	#map 13 genres
-	'''
+	
 	train_df.iloc[:,-1] = train_df.iloc[:,-1].map({'Electronic':0, 'Pop':1, 'Experimental':2, 'Rock':3, 'International':4, 'Hip-Hop':5, 'Folk':6,
 	 'Classical':7, 'Instrumental':8, 'Jazz':9, 'Country':10, 'Blues':11, 'Soul-RnB':12})
 	test_df.iloc[:,-1] = test_df.iloc[:,-1].map({'Electronic':0, 'Pop':1, 'Experimental':2, 'Rock':3, 'International':4, 'Hip-Hop':5, 'Folk':6,
 	 'Classical':7, 'Instrumental':8, 'Jazz':9, 'Country':10, 'Blues':11, 'Soul-RnB':12})
-	'''
+	
 	#print(len(test_df.columns))
 	#print(test_df['genre_top'].unique())
 	#print(train_df.iloc[:,-1].unique())
@@ -119,6 +119,5 @@ def get_test_inputs():
 accuracy_score = classifier.evaluate(input_fn=get_train_inputs,
                                        steps=1)["accuracy"]
 print("\nTest Accuracy: {0:f}\n".format(accuracy_score))
-
 
 #predictions = list(classifier.predict(input_fn=new_samples))
