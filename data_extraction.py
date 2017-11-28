@@ -1,6 +1,9 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split
 
+from genres import Genre
+
+
 def balance(df, vals, max=100):
     drop = []
     stop = len(vals) * max
@@ -18,45 +21,12 @@ def balance(df, vals, max=100):
 features_path = 'dataset/fma/features.csv'
 tracks_path = 'dataset/fma/tracks.csv'
 
-genre13_dict = {
-    "Rock": 0,
-    "Experimental": 0,
-    "Electronic": 0,
-    "Hip-Hop": 0,
-    "Folk": 0,
-    "Pop": 0,
-    "Instrumental": 0,
-    "International": 0,
-    "Classical": 0,
-    "Jazz": 0,
-    "Country": 0,
-    "Soul-RnB": 0,
-    "Blues": 0,
-}
-
-genre10_dict = {
-    "Rock": 0,
-    "Experimental": 0,
-    "Electronic": 0,
-    "Hip-Hop": 0,
-    "Folk": 0,
-    "Pop": 0,
-    "Instrumental": 0,
-    "International": 0,
-    "Classical": 0,
-    "Jazz": 0,
-}
-
-genre8_dict = {
-    "Rock": 0,
-    "Experimental": 0,
-    "Electronic": 0,
-    "Hip-Hop": 0,
-    "Folk": 0,
-    "Pop": 0,
-    "Instrumental": 0,
-    "International": 0,
-}
+# The base genres
+genre_inst = Genre()
+genres = genre_inst.get_genres()
+genre13_dict = genres.get_empty_genre13()
+genre10_dict = genres.get_empty_genre10()
+genre8_dict = genres.get_empty_genre8()
 
 print('Starting csv extraction...')
 features = pd.read_csv(features_path, index_col=0, header=[0, 1, 2])
@@ -90,15 +60,25 @@ joined10_features = pd.concat([feature_list, genre10_list], axis=1, join='inner'
 joined8_features = pd.concat([feature_list, genre8_list], axis=1, join='inner')
 
 # Randomizing and splitting data
-print('- Randomize split')
+print('- Randomize')
 mixed13_features = joined13_features.sample(frac=1).reset_index(drop=True)
 mixed10_features = joined10_features.sample(frac=1).reset_index(drop=True)
 mixed8_features = joined8_features.sample(frac=1).reset_index(drop=True)
 
+# Balancing the data, the max values are hardcoded. Better solution in the future.
 bal13 = balance(mixed13_features, genre13_dict)
 bal10 = balance(mixed10_features, genre10_dict, max=500)
 bal8 = balance(mixed8_features, genre8_dict, max=1350)
 
+# Replace the genre top labels with values
+print('- Replacing genre string values')
+mixed13_features.iloc[:,-1] = mixed13_features.iloc[:,-1].map(genres)
+bal13.iloc[:,-1] = bal13.iloc[:,-1].map(genres)
+bal10.iloc[:,-1] = bal10.iloc[:,-1].map(genres)
+bal8.iloc[:,-1] = bal8.iloc[:,-1].map(genres)
+
+# Create train/test sets
+print('- Split into train/test sets') 
 bal13_train = bal13.sample(frac=0.8, random_state=200)
 bal13_test = bal13.drop(bal13_train.index)
 
@@ -117,19 +97,19 @@ print('- Base feature subset')
 joined13_features.to_csv('dataset/feature_subset.csv')
 
 print('- Unbalanced 13 top level genres')
-unbal13_train.to_csv('dataset/unbalanced13/train_set.csv', index=False)
-unbal13_test.to_csv('dataset/unbalanced13/test_set.csv', index=False)
+unbal13_train.to_csv('dataset/unbalanced13/train_set.csv', index=False, header=False)
+unbal13_test.to_csv('dataset/unbalanced13/test_set.csv', index=False, header=False)
 
 print('- Balanced 13 top level genres')
-bal13_train.to_csv('dataset/balanced13/train_set.csv', index=False)
-bal13_test.to_csv('dataset/balanced13/test_set.csv', index=False)
+bal13_train.to_csv('dataset/balanced13/train_set.csv', index=False, header=False)
+bal13_test.to_csv('dataset/balanced13/test_set.csv', index=False, header=False)
 
 print('- Balanced 10 top level genres')
-bal10_train.to_csv('dataset/balanced10/train_set.csv', index=False)
-bal10_test.to_csv('dataset/balanced10/test_set.csv', index=False)
+bal10_train.to_csv('dataset/balanced10/train_set.csv', index=False, header=False)
+bal10_test.to_csv('dataset/balanced10/test_set.csv', index=False, header=False)
 
 print('- Balanced 8 top level genres')
-bal8_train.to_csv('dataset/balanced8/train_set.csv', index=False)
-bal8_test.to_csv('dataset/balanced8/test_set.csv', index=False)
+bal8_train.to_csv('dataset/balanced8/train_set.csv', index=False, header=False)
+bal8_test.to_csv('dataset/balanced8/test_set.csv', index=False, header=False)
 
 print('Done.')

@@ -47,6 +47,8 @@ test_df_labels = pd.read_csv('dataset/test_set_labels.csv')
 #convert labels to one hot representation
 train_df_labels = train_df_labels.values
 test_df_labels = test_df_labels.values
+print(train_df_labels)
+
 label_binarizer.fit(range(np.max(train_df_labels)+1))
 train_one_hot_encoded= label_binarizer.transform(train_df_labels)
 label_binarizer.fit(range(np.max(test_df_labels)+1))
