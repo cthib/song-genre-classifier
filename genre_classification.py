@@ -36,14 +36,14 @@ def get_tf_inputs(dataset):
 
 
 def genre_val(classification):
-	genres = Genres().get_genres()
-	for i, val in iter(classification):
+	inv_genres = Genres().get_inv_genres()
+	for i, val in enumerate(classification):
 		if val == 1:
-			return str(genres.val(val))
+			return inv_genres[i] 
 	return "Genre not found."
 
 
-def train_softmax(num_classes=13, num_features=35, save_sess=True):
+def train_softmax(num_classes=13, num_features=35, save_sess=True, features=[]):
 	"""Train softmax classifier on determined number of classes and features."""
 	print("Training softmax genre classifier on {} classes and {} features...".format(num_classes, num_features))
 	label_binarizer = LabelBinarizer()
@@ -105,6 +105,11 @@ def train_softmax(num_classes=13, num_features=35, save_sess=True):
 		saved = tf.train.Saver(sess, save_path)
 		print("Model saved in file: {}".format(saved))
 
+	if len(features):
+		feat = np.array([features])
+		predictions = sess.run(y, feed_dict={Xp: feat})
+		print("The song has been predicted as: {}".format(genre_val(predictions[0])))
+	
 
 def classify_softmax(features, num_classes=13, num_features=35):
 	"""Classify a feature vector using an existing softmax regression model"""
@@ -115,7 +120,7 @@ def classify_softmax(features, num_classes=13, num_features=35):
 	with tf.Session() as sess:
 		saver.restore(sess, save_path)
 		predictions = sess.run(y, feed_dict={Xp: pred})
-		print("Prediction: {}", genre_val(predictions))
+		print("The song has been predicted as: {}".format(genre_val(predictions[0])))
 
 
 def train_dnn(num_classes=13, num_features=35, save_sess=True):

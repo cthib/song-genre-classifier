@@ -73,8 +73,8 @@ def main():
 
     fn = process_soundcloud(vargs)[0]
     features = compute_features(fn)
-    print(features)
-    # TODO: classify_softmax(features)
+    train_softmax(save_sess=False, features=features)
+    os.remove(fn)
 
 
 if __name__ == "__main__":

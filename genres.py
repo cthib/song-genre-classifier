@@ -20,6 +20,9 @@ class Genres(object):
     def get_genres(self):
         return self.genres
 
+    def get_inv_genres(self):
+        return {v: k for k, v in self.genres.items()}
+
     def get_empty_genre13(self):
         return dict.fromkeys(self.genres, 0)
 
