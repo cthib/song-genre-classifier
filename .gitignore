@@ -1,6 +1,8 @@
 # Project
 dataset/fma/
 .vscode
+*.mp3
+*.wav
 
 # MacOS General
 .DS_Store
