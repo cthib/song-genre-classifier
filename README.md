@@ -7,6 +7,12 @@ A simple song genre classifier using basic music information retrieval technique
 You will need to install virtualenvwrapper for this project. We will have some python dependencies for the project and it makes it super helpful when we have 3rd party packages.
   1. Download virtualenv (https://pypi.python.org/pypi/virtualenv)
   2. `pip install virtualenvwrapper` (https://virtualenvwrapper.readthedocs.io/en/latest/)
+  3. Initialize (https://virtualenvwrapper.readthedocs.io/en/latest/#introduction) 
+     ```
+     export WORKON_HOME=~/Envs
+     mkdir -p $WORKON_HOME
+     source /usr/local/bin/virtualenvwrapper.sh
+     ```
 ### 2. Creating a virtualenv for the project
 To help with conflicts in project dependencies we'll create a virtualenv for the project. The command reference: 
   1. `mkvirtualenv -p python3 sgc` *NOTE: You will need python3 for this. Also the -p python3 command may vary with your OS*
