@@ -128,7 +128,6 @@ def train_dnn(num_classes=13, num_features=35, save_sess=True):
 	train = load_csv_with_header(filename=training_set_file, target_dtype=np.int, features_dtype=np.float32)
 	test = load_csv_with_header(filename=test_set_file, target_dtype=np.int, features_dtype=np.float32)
 
-	# feature_columns = tf.contrib.learn.infer_real_valued_columns_from_input(train.data)
 	feature_columns = [tf.feature_column.numeric_column("x", shape=[num_features])]
 
 	# Build 5 layer DNN with [N, 2N, 4N, 8N, 16N] hidden layers
