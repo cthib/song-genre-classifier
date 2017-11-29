@@ -1,5 +1,5 @@
 # song-genre-classifier
-A simple song genre classifier using basic music information retrieval techniques, such as pitch detection, texture, and tempo, in combination with Tensorflow.
+A simple song genre classifier using basic music information retrieval techniques, such as pitch detection, texture, and tempo, in combination with Tensorflow. This was done as a project for the University of Victoria's CSC475 "Music Information Retrieval" course. 
 
 ## Setup
 
@@ -20,7 +20,7 @@ To help with conflicts in project dependencies we'll create a virtualenv for the
   3. While in your env: `pip install -r requirements.txt`
   4. `pip freeze` will show the project dependencies
 
-## Dependent Resources
+## Main Dependent Resources
 
 ### TensorFlow (https://www.tensorflow.org/)
 pass
