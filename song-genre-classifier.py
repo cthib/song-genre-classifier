@@ -61,11 +61,11 @@ def main():
     elif vargs['trainneuralnet10']:
         return train_dnn(num_classes=10, save_sess=False)
     elif vargs['trainneuralnet8']:
-        print("Feature unavailable.")
         return train_dnn(num_classes=8, save_sess=False)
 
     if vargs['demo']:
         vargs['artist_url'] = 'https://soundcloud.com/emerson-mart-nez/a-tribe-called-quest-electric-relaxation-instrumental'
+        os.environ["TF_CPP_MIN_LOG_LEVEL"] = "3"
     elif sys.version_info < (3,0,0):
         vargs['artist_url'] = urllib.quote(vargs['artist_url'][0], safe=':/')
     else:

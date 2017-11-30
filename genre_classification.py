@@ -61,7 +61,7 @@ def train_softmax(num_classes=13, num_features=35, save_sess=True, features=[]):
 	test_df_labels = pd.read_csv(test_set_file, usecols=[num_features])
 
 	# One hot encoded
-	print("- Label binarizing")
+	print("- Label binaries (Hot encoding)")
 	label_binarizer.fit(range(num_classes))
 	train_one_hot_encoded= label_binarizer.transform(train_df_labels)
 	label_binarizer.fit(range(num_classes))
@@ -99,6 +99,7 @@ def train_softmax(num_classes=13, num_features=35, save_sess=True, features=[]):
 	print('\nAccuracy score: {:0.2f}%\n'.format(accuracy_score))
 
 	# Save the session for later use
+	# TODO: Note that the saving of ckpt does not work (Future implementation)
 	if save_sess:
 		sess.run(tf.global_variables_initializer())
 		save_path = 'tensors/softmax_balanced' + str(num_classes) + ".ckpt"
@@ -111,6 +112,7 @@ def train_softmax(num_classes=13, num_features=35, save_sess=True, features=[]):
 		print("The song has been predicted as: {}".format(genre_val(predictions[0])))
 	
 
+# TODO: Note that the loading of ckpt files does not work (Future implementation)
 def classify_softmax(features, num_classes=13, num_features=35):
 	"""Classify a feature vector using an existing softmax regression model"""
 	saver = tf.train.Saver()
