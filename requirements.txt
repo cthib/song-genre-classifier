@@ -37,7 +37,7 @@ simplejson==3.12.0
 six==1.11.0
 soundcloud==0.5.0
 soundscrape==0.30.1
-tensorflow==1.4.0
+tensorflow==2.3.1
 tensorflow-tensorboard==0.4.0rc3
 tf-nightly==1.5.0.dev20171102
 urllib3==1.22
